@@ -9,7 +9,7 @@ test('valid user can login', async ({ page }) => {
   await loginPage.goto();
   await loginPage.login('standard_user', 'secret_sauce');
 
-  await expect(inventoryPage.title).toHaveText('Product List');
+  await expect(inventoryPage.title).toHaveText('Products');
 });
 
 test('wrong password shows error', async ({ page }) => {
