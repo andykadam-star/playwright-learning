@@ -5,6 +5,7 @@ const SF_URL = 'https://orgfarm-a315f663bc-dev-ed.develop.lightning.force.com';
 
 test.skip(!fs.existsSync('sf-auth.json'), 'Salesforce session file not found');
 test.use({ storageState: 'sf-auth.json' });
+test.setTimeout(90000);
 
 test('create a new lead with last name and company', async ({ page }) => {
   const leadName = `Demo Lead ${Date.now()}`;
