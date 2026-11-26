@@ -17,3 +17,12 @@ test('create a new lead with last name and company', async ({ page }) => {
 
   await expect(page.locator('lightning-formatted-name')).toHaveText(leadName, { timeout: 15000 });
 });
+
+test('lead cannot be saved without last name', async ({ page }) => {
+  await page.goto(`${SF_URL}/lightning/o/Lead/new`);
+  await page.getByRole('textbox', { name: 'Company' }).fill('Test Company Pvt Ltd');
+  await page.getByRole('button', { name: 'Save', exact: true }).click();
+
+  await expect(page.getByText('Complete this field.')).toBeVisible({ timeout: 15000 });
+  await expect(page.getByText('We hit a snag.')).toBeVisible();
+});
